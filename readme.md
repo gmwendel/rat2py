@@ -1,6 +1,6 @@
-rat2python
+rat2py
 ===============================
-A quick solution for reading custom objects in ROOT files included by RAT-PAC.
+A solution for reading custom objects in ROOT files included by RAT-PAC.
 This code is a modified version of the sibyl code found on the WM github page. 
 
 
@@ -13,8 +13,8 @@ To install, first make sure you source ROOT and RAT-PAC
 
 then continue using pip
 
-    $ git clone https://github.com/ait-watchman/sibyl
-    $ cd sibyl
+    $ git clone https://github.com/gmwendel/rat2py
+    $ cd rat2py
     $ pip install -e .
 
 Usage
@@ -23,11 +23,12 @@ Usage
 After installing, a python package is generated called snake that provides 
 functions to read the data with.  See examples 
 
-from rat2root import snake
+```
+from rat2py import snake
+```
 
-----
-
-Check snake.py and fastrat.cpp
+Check snake.py and fastrat.cpp for details.  An example for converting MC
+data into the format HITMAN uses is included inside examples/
 
 
 Dependencies
@@ -40,3 +41,4 @@ TODO
 ----
 - [ ] Add particle type
 - [ ] Add absolute event time
+- [ ] Add better examples
