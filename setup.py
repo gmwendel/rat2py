@@ -51,4 +51,9 @@ setup(
     zip_safe=False,
     ext_package="rat2py",
     ext_modules=extensions,
+    entry_points={
+    'console_scripts': [
+        'rat2hitman=scripts.extract:main'
+    ],
+},
 )

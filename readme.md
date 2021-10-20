@@ -28,8 +28,7 @@ from rat2py import snake
 ```
 
 Check snake.py and fastrat.cpp for details.  An example for converting MC
-data into the format HITMAN uses is included inside examples/
-
+data into the format HITMAN uses is included by running command rat2hitman
 
 Dependencies
 ------------
