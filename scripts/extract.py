@@ -25,10 +25,10 @@ def main():
     labels=['x','y','z','zenith','azimuth','t','energy']
     sn = snake()
     event_range=[]
-
+    file_num=0
     for sourcefile in args.input_files:
         sn.openFile(sourcefile)
-        file_num=0
+        
         for event in range(0,sn.getEntries()):
             sn.getEvent(event)
             charges, times ,noise = sn.getHitInfo()
@@ -39,7 +39,9 @@ def main():
                 x,y,z=sn.getXYZ()
                 p=np.column_stack(sn.getMCVal())
                 zenith = math.acos(p[0,5]/np.linalg.norm(p[0,3:6],2))
-                azimuth = math.atan2(p[0,4], p[0,3])+3.141592654
+                azimuth = math.atan2(p[0,4], p[0,3])
+                if azimuth < 0:
+                    azimuth = azimuth + 2*np.pi
                 p=np.column_stack((p[0,0],p[0,1],p[0,2],zenith,azimuth,p[0,6],p[0,7]))
                 new_params = np.repeat(p, len(pmts), axis=0)
                 new_hits = np.column_stack((x[pmts],y[pmts],z[pmts],times[pmts],charges[pmts],PMT_id[pmts],noise[pmts]))
@@ -54,7 +56,7 @@ def main():
                 print(sourcefile+": "+str(100*event/sn.getEntries())+"% complete.")
                 print("-----------------------------------------------------------")
         file_num+=1
-        print("File " + str(file_num) + "of " + str(len(args.input_files)) + " complete")
+        print("File " + str(file_num) + " of " + str(len(args.input_files)) + " complete")
 
 
     fileObj = open(args.output_file[0], 'wb')
